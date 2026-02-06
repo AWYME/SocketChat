@@ -2,7 +2,7 @@ import socket, os, time, sys
 
 def text(text):
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(f'{'='*80}\n{'    '*10}CLIENT\n{'='*80}')
+    print(f'{'='*80}\n{'    '*9}CLIENT\n{'='*80}')
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
@@ -10,11 +10,11 @@ def text(text):
     print()
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-SERVER_IP, SERVER_PORT = input().split(':')
+SERVER_IP, SERVER_PORT = input('Enter "IP:PORT": ').split(':')
 text(f'Try connect: {SERVER_IP}')
 
 try:
-    client_socket.connect((SERVER_IP, SERVER_PORT))
+    client_socket.connect((SERVER_IP, int(SERVER_PORT)))
     text('Connection succes.')
     time.sleep(1)
     while True:
@@ -26,7 +26,5 @@ try:
             break
 except ConnectionRefusedError:
     text('Error: connection faild. Check IP or PORT')
-except Exception:
-    text(f'Error: {Exception}')
 finally:
     client_socket.close()
