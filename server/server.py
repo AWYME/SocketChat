@@ -2,7 +2,7 @@ import socket, os, time, sys
 
 def text(text):
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(f'{'='*80}\n{'    '*10}CLIENT\n{'='*80}')
+    print(f'{'='*80}\n{'    '*9}SERVER\n{'='*80}')
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
@@ -20,9 +20,8 @@ def get_local_id():
 
 server_socet = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socet.bind(('0.0.0.0', 12345))
-server_socet.listen(1)
-print(f'Server ip: {get_local_id()}')
-print('Started. Wait conecting...')
+server_socet.listen(5)
+text(f'Server ip: {get_local_id()}\nStarted. Wait conecting...')
 client_socket, client_addres = server_socet.accept()
 text(f'Client conected: {client_addres}')
 time.sleep(1)

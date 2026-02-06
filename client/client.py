@@ -11,20 +11,20 @@ def text(text):
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 SERVER_IP, SERVER_PORT = input('Enter "IP:PORT": ').split(':')
-text(f'Try connect: {SERVER_IP}')
+text(f'Try conect: {SERVER_IP}')
 
 try:
     client_socket.connect((SERVER_IP, int(SERVER_PORT)))
-    text('Connection succes.')
+    text('Conection succes.')
     time.sleep(1)
     while True:
         received_data = client_socket.recv(1024)
         message = received_data.decode('utf-8')
         text(f'Message: {message}')
         check=input()
-        if check == 'connection.close()':
+        if check == 'conection.close()':
             break
 except ConnectionRefusedError:
-    text('Error: connection faild. Check IP or PORT')
+    text('Error: conection faild. Check IP or PORT')
 finally:
     client_socket.close()
