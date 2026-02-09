@@ -1,8 +1,9 @@
-import socket, os, time, sys
+import socket, os, time, sys, rich.console as console
+from styles.rich import client_header_layout
 
 def text(text):
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(f'{'='*80}\n{'    '*9}CLIENT\n{'='*80}')
+    client_header_layout()
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
@@ -16,7 +17,7 @@ text(f'Try conect: {SERVER_IP}')
 try:
     client_socket.connect((SERVER_IP, int(SERVER_PORT)))
     text('Conection succes.')
-    time.sleep(1)
+    time.sleep(1.5)
     while True:
         received_data = client_socket.recv(1024)
         message = received_data.decode('utf-8')
